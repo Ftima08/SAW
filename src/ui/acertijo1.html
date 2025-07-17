@@ -16,6 +16,9 @@
     <br>
     <button onclick="comprobarCodigo()">Comprobar</button>
     <p id="mensaje" class="mensaje"></p>
+    <audio id="bg-music" autoplay loop>
+  <source src="../resource/sonidos/tension.mp3" type="audio/mpeg">
+</audio>
   </div>
 
  <!-- Sonidos -->
@@ -56,6 +59,13 @@
         sonidoIncorrecto.play();
       }
     }
+
+    window.addEventListener('click', function () {
+    const audio = document.getElementById('bg-music');
+    if (audio.paused) {
+      audio.play();
+    }
+  }, { once: true });
   </script>
 </body>
 </html>
