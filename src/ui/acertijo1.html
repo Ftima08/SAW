@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Quieres jugar a un juego?</title>
+  <link rel="stylesheet" href="../resource/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../resource/acertijos.js"></script> <!-- Carga las claves -->
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenido a tu prueba de supervivencia</h1>
+    <p>Introduce el código secreto para continuar…</p>
+    <input type="text" id="codigoInput" placeholder="- - - -" />
+    <br>
+    <button onclick="comprobarCodigo()">Comprobar</button>
+    <p id="mensaje" class="mensaje"></p>
+  </div>
+
+ <!-- Sonidos -->
+        <audio id="sonidoCorrecto" src="../resource/sonidos/risa.mp3" preload="auto"></audio>
+        <audio id="sonidoIncorrecto" src="../resource/sonidos/grito.mp3" preload="auto"></audio>
+
+  <script>
+    // CAMBIA SOLO ESTA LÍNEA SEGÚN EL ARCHIVO
+    const claveAcertijo = 'acertijo1';
+    document.getElementById('codigoInput').setAttribute('maxlength', acertijos[claveAcertijo].length);
+
+    function comprobarCodigo() {
+      const input = document.getElementById('codigoInput').value.trim().toUpperCase();
+      const mensaje = document.getElementById('mensaje');
+      const sonidoCorrecto = document.getElementById('sonidoCorrecto');
+      const sonidoIncorrecto = document.getElementById('sonidoIncorrecto');
+      const codigoCorrecto = acertijos[claveAcertijo];
+
+      if (!codigoCorrecto) {
+        mensaje.textContent = 'Error: clave no encontrada';
+        mensaje.classList.add('incorrecto');
+        return;
+      }
+
+      if (input === codigoCorrecto.toUpperCase()) {
+        mensaje.textContent = 'Sigues viva, de momento...';
+        mensaje.classList.remove('incorrecto');
+        mensaje.classList.add('correcto');
+        sonidoIncorrecto.pause();
+        sonidoIncorrecto.currentTime = 0;
+        sonidoCorrecto.play();
+      } else {
+        mensaje.textContent = 'Te queda poco tiempo';
+        mensaje.classList.remove('correcto');
+        mensaje.classList.add('incorrecto');
+        sonidoCorrecto.pause();
+        sonidoCorrecto.currentTime = 0;
+        sonidoIncorrecto.play();
+      }
+    }
+  </script>
+</body>
+</html>
