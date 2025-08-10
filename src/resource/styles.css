@@ -78,3 +78,22 @@ button:hover {
 .incorrecto {
   color: #f00;
 }
+
+/* Estados del input */
+input.correcto {
+  border-color: #00ff00;
+  background: #111 url('data:image/svg+xml;utf8,<svg fill="%2300ff00" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.291-5.285-5.291 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg>') no-repeat right 10px center;
+  background-size: 24px;
+}
+
+input.incorrecto {
+  border-color: #ff0000;
+  background: #111 url('data:image/svg+xml;utf8,<svg fill="%23ff0000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>') no-repeat right 10px center;
+  background-size: 20px;
+}
+
+
+/* Para que el texto no choque con el icono */
+input {
+  padding-right: 40px !important;
+}

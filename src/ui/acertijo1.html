@@ -31,34 +31,38 @@
     document.getElementById('codigoInput').setAttribute('maxlength', acertijos[claveAcertijo].length);
 
     function comprobarCodigo() {
-      const input = document.getElementById('codigoInput').value.trim().toUpperCase();
-      const mensaje = document.getElementById('mensaje');
+      const inputElement = document.getElementById('codigoInput');
+      const inputValue = inputElement.value.trim().toUpperCase();
       const sonidoCorrecto = document.getElementById('sonidoCorrecto');
       const sonidoIncorrecto = document.getElementById('sonidoIncorrecto');
       const codigoCorrecto = acertijos[claveAcertijo];
 
       if (!codigoCorrecto) {
-        mensaje.textContent = 'Error: clave no encontrada';
-        mensaje.classList.add('incorrecto');
+        console.error('Error: clave no encontrada');
         return;
       }
 
-      if (input === codigoCorrecto.toUpperCase()) {
-        mensaje.textContent = 'Sigues viva, de momento...';
-        mensaje.classList.remove('incorrecto');
-        mensaje.classList.add('correcto');
+      if (inputValue === codigoCorrecto.toUpperCase()) {
+        inputElement.classList.remove('incorrecto');
+        inputElement.classList.add('correcto');
         sonidoIncorrecto.pause();
         sonidoIncorrecto.currentTime = 0;
         sonidoCorrecto.play();
       } else {
-        mensaje.textContent = 'Te queda poco tiempo';
-        mensaje.classList.remove('correcto');
-        mensaje.classList.add('incorrecto');
+        inputElement.classList.remove('correcto');
+        inputElement.classList.add('incorrecto');
         sonidoCorrecto.pause();
         sonidoCorrecto.currentTime = 0;
         sonidoIncorrecto.play();
+
+        // Al hacer clic en el input si es incorrecto, limpiamos y quitamos el icono
+        inputElement.addEventListener('click', () => {
+          inputElement.value = '';
+          inputElement.classList.remove('incorrecto');
+        }, { once: true });
       }
     }
+
 
     window.addEventListener('click', function () {
     const audio = document.getElementById('bg-music');
