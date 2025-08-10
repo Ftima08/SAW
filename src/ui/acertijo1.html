@@ -38,17 +38,21 @@
       const codigoCorrecto = acertijos[claveAcertijo];
 
       if (!codigoCorrecto) {
+        mensaje.textContent = 'Error: clave no encontrada';
+        mensaje.classList.add('incorrecto');
         console.error('Error: clave no encontrada');
         return;
       }
 
       if (inputValue === codigoCorrecto.toUpperCase()) {
+        mensaje.textContent = 'Sigues viva, de momento...';
         inputElement.classList.remove('incorrecto');
         inputElement.classList.add('correcto');
         sonidoIncorrecto.pause();
         sonidoIncorrecto.currentTime = 0;
         sonidoCorrecto.play();
       } else {
+        mensaje.textContent = 'Te queda poco tiempo';
         inputElement.classList.remove('correcto');
         inputElement.classList.add('incorrecto');
         sonidoCorrecto.pause();
