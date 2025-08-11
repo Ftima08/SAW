@@ -51,6 +51,10 @@
         sonidoIncorrecto.pause();
         sonidoIncorrecto.currentTime = 0;
         sonidoCorrecto.play();
+
+        setTimeout(() => {
+          window.location.href = './final.html';
+        }, 2000);
       } else {
         mensaje.textContent = 'Te queda poco tiempo';
         inputElement.classList.remove('correcto');
